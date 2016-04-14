@@ -18,3 +18,7 @@ When executing the programs:
 2. or you could use Phase1.sh
 
 Both under folder ./src
+
+Performance test:
+23 hours' real world data, ~ 2 million tweets, finished analyzing in ~3300 seconds, ~ 11,000 related tweets stored.
+At anytime, program is tracking ~ 3000 tags and ~ 25000 users respectively.
