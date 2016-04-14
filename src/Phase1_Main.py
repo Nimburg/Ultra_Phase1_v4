@@ -80,7 +80,7 @@ def pd_timestamp_check(input):
 ####################################################################
 """
 
-def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey):
+def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey, RollingScoreBank):
 
 	####################################################################
 	# read tweets.txt file data
@@ -107,21 +107,21 @@ def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey):
 	# Rolling Score Bank
 	# this variable does NOT got wiped with each sliding window
 	# Rolling Score Bank should be checked to create flags, rather than directly control RamSQL
-	RollingScoreBank = col.defaultdict(col.Counter)
+	#RollingScoreBank = col.defaultdict(col.Counter)
 	# tags that contain keywords
-	RollingScoreBank['tag_keyword1'] = col.Counter() # val = N_call
-	RollingScoreBank['tag_keyword2'] = col.Counter() # val = N_call
+	#RollingScoreBank['tag_keyword1'] = col.Counter() # val = N_call
+	#RollingScoreBank['tag_keyword2'] = col.Counter() # val = N_call
 	# tags that with score >= 5
 	# keys will overlap here
-	RollingScoreBank['tag_relevant1'] = col.Counter() # val = score
-	RollingScoreBank['tag_relevant1_N'] = col.Counter() # val = N_call
-	RollingScoreBank['tag_relevant2'] = col.Counter() # val = score
-	RollingScoreBank['tag_relevant2_N'] = col.Counter() # val = N_call
+	#RollingScoreBank['tag_relevant1'] = col.Counter() # val = score
+	#RollingScoreBank['tag_relevant1_N'] = col.Counter() # val = N_call
+	#RollingScoreBank['tag_relevant2'] = col.Counter() # val = score
+	#RollingScoreBank['tag_relevant2_N'] = col.Counter() # val = N_call
 	# list of users
-	RollingScoreBank['user1'] = col.Counter() # key = id_str, val = score
-	RollingScoreBank['user1_N'] = col.Counter() # key = id_str, val = N_act
-	RollingScoreBank['user2'] = col.Counter() # key = id_str, val = score
-	RollingScoreBank['user2_N'] = col.Counter() # key = id_str, val = N_act
+	#RollingScoreBank['user1'] = col.Counter() # key = id_str, val = score
+	#RollingScoreBank['user1_N'] = col.Counter() # key = id_str, val = N_act
+	#RollingScoreBank['user2'] = col.Counter() # key = id_str, val = score
+	#RollingScoreBank['user2_N'] = col.Counter() # key = id_str, val = N_act
 
 	####################################################################
 
@@ -291,8 +291,8 @@ def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey):
 
 	####################################################################
 	# End of File
-	print "End of File; End of Execution of Phase 1"
 	connection.close()
+	return RollingScoreBank
 
 
 
@@ -303,14 +303,42 @@ def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey):
 
 if __name__ == "__main__":
 
-	file_name = 'US_tweets_Mar4th.txt'
+	file_name_list = ['US_tweets_Mar4th.txt', 'US_tweets_Mar5th.txt','US_tweets_Mar6th','US_tweets_Mar7th']
+
 	keyword1 = 'trump'
 	keyword2 = 'hillary'
 	MySQL_DBkey = {'host':'localhost', 'user':'sa', 'password':'fanyu01', 'db':'ultra_v4_Phase1','charset':'utf8mb4'}
 
-	Phase1_Main(file_name = file_name, keyword1 = keyword1, keyword2 = keyword2, MySQL_DBkey = MySQL_DBkey)
+
+	# Rolling Score Bank
+	# This variable is "global" across ALL data files; 
+	# this variable does NOT got wiped with each sliding window
+	# Rolling Score Bank should be checked to create flags, rather than directly control RamSQL
+	RollingScoreBank = col.defaultdict(col.Counter)
+	# tags that contain keywords
+	RollingScoreBank['tag_keyword1'] = col.Counter() # val = N_call
+	RollingScoreBank['tag_keyword2'] = col.Counter() # val = N_call
+	# tags that with score >= 5
+	# keys will overlap here
+	RollingScoreBank['tag_relevant1'] = col.Counter() # val = score
+	RollingScoreBank['tag_relevant1_N'] = col.Counter() # val = N_call
+	RollingScoreBank['tag_relevant2'] = col.Counter() # val = score
+	RollingScoreBank['tag_relevant2_N'] = col.Counter() # val = N_call
+	# list of users
+	RollingScoreBank['user1'] = col.Counter() # key = id_str, val = score
+	RollingScoreBank['user1_N'] = col.Counter() # key = id_str, val = N_act
+	RollingScoreBank['user2'] = col.Counter() # key = id_str, val = score
+	RollingScoreBank['user2_N'] = col.Counter() # key = id_str, val = N_act
 
 
+	# LOOP through all data files
+	for file_name in file_name_list:
+		print "Start processing: ", file_name		
+		RollingScoreBank = Phase1_Main(file_name = file_name, keyword1 = keyword1, keyword2 = keyword2, 
+			MySQL_DBkey = MySQL_DBkey, RollingScoreBank = RollingScoreBank)
+		print "Finished processing: ", file_name
+
+	print "End of Execution of Phase 1"
 
 #########################################
 # performance
