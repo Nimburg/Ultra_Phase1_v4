@@ -13,8 +13,8 @@ sentimental analysis.
 
 Phase 3 would build on top of Phase 2, with additional insights borrowed from "relevant" mathematical 
 disciplines, to create a prediction model, which would not only make predictions with past observations, 
-but also make predictions about inputs that one should "insert" into the system, should one is expecting 
-some desired results from the system itself.
+but also make predictions about outcomes of inputs that one might be able to "insert" into the system, 
+should one is expecting some desired results from the system itself.
 
 This upload is Phase 1 of Project Ultra. This is the 4th rewrite, as well as the 1st version which could 
 analyze data at a speed that is at least 10 times faster that real world time speed. 
