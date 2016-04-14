@@ -17,4 +17,4 @@ but also make predictions about inputs that one should "insert" into the system,
 some desired results from the system itself.
 
 This upload is Phase 1 of Project Ultra. This is the 4th rewrite, as well as the 1st version which could 
-analyze data in a speed that is at least 10 times faster that real world time speed. 
+analyze data at a speed that is at least 10 times faster that real world time speed. 
