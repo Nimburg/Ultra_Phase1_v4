@@ -268,6 +268,13 @@ def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey):
 			# load RamsQL_UserUnique into DB table TagUnique, of existing sliding window
 			UserUnique_Insert(connection=connection, pin_time=pin_time_load, RamSQL_UserUnique=RamSQL_UserUnique)
 
+		# for the last window before file ends, which might be short than 1 hour
+		if flag_fileEnd == True:
+			# load RamsQL_TagUnique into DB table TagUnique, of existing sliding window
+			TagUnique_Insert(connection=connection, pin_time=pin_time_load, RamSQL_TagUnique=RamSQL_TagUnique)
+			# load RamsQL_UserUnique into DB table TagUnique, of existing sliding window
+			UserUnique_Insert(connection=connection, pin_time=pin_time_load, RamSQL_UserUnique=RamSQL_UserUnique)
+
 		# create New DB table TagUnique and UserUnique
 		# create New RamSQL
 		if flag_TweetStack and flag_new_window:
@@ -299,7 +306,7 @@ if __name__ == "__main__":
 	file_name = 'US_tweets_Mar4th.txt'
 	keyword1 = 'trump'
 	keyword2 = 'hillary'
-	MySQL_DBkey = {'host':'localhost', 'user':'', 'password':'', 'db':'','charset':'utf8mb4'}
+	MySQL_DBkey = {'host':'localhost', 'user':'sa', 'password':'fanyu01', 'db':'ultra_v4_Phase1','charset':'utf8mb4'}
 
 	Phase1_Main(file_name = file_name, keyword1 = keyword1, keyword2 = keyword2, MySQL_DBkey = MySQL_DBkey)
 
