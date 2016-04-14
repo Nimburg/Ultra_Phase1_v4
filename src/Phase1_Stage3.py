@@ -63,7 +63,7 @@ def RamSQL_TagUnique_update(RamSQL_TagUnique, Tweet_OBJ, RollingScoreBank):
 		# update other present tags
 		for other_tags in tag_all:
 			if other_tags != tag:
-				RamSQL_TagUnique[tag].update_N_score(tagCon=tag)
+				RamSQL_TagUnique[tag].update_N_score(tagCon=other_tags)
 
 	return RamSQL_TagUnique
 
