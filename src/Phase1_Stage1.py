@@ -146,8 +146,8 @@ def RollingScore_Update(RollingScoreBank, Tweet_OBJ, keyword1, keyword2):
 		if flag_key1: 
 			if user_id_str in RollingScoreBank['user1'] and user_id_str in RollingScoreBank['user1_N']:
 				# since there is the keyword_tag, score to 10
-				New_User_Score = 1.0*(9.0 + RollingScoreBank['user1'][item]*RollingScoreBank['user1_N'][item])/(RollingScoreBank['user1_N'][item]+1)
-				if RollingScoreBank['user1'][item] < 1.2:
+				New_User_Score = 1.0*(9.0 + RollingScoreBank['user1'][user_id_str]*RollingScoreBank['user1_N'][user_id_str])/(RollingScoreBank['user1_N'][user_id_str]+1)
+				if RollingScoreBank['user1'][user_id_str] < 1.2:
 					RollingScoreBank['user1'][user_id_str] = 9.0
 					RollingScoreBank['user1_N'][user_id_str] = 1
 				else:
@@ -160,8 +160,8 @@ def RollingScore_Update(RollingScoreBank, Tweet_OBJ, keyword1, keyword2):
 		if flag_key2: 
 			if user_id_str in RollingScoreBank['user2'] and user_id_str in RollingScoreBank['user2_N']:
 				# since there is the keyword_tag, score to 10
-				New_User_Score = 1.0*(9.0 + RollingScoreBank['user2'][item]*RollingScoreBank['user2_N'][item])/(RollingScoreBank['user2_N'][item]+1)
-				if RollingScoreBank['user2'][item] < 1.2:
+				New_User_Score = 1.0*(9.0 + RollingScoreBank['user2'][user_id_str]*RollingScoreBank['user2_N'][user_id_str])/(RollingScoreBank['user2_N'][user_id_str]+1)
+				if RollingScoreBank['user2'][user_id_str] < 1.2:
 					RollingScoreBank['user2'][user_id_str] = 9.0
 					RollingScoreBank['user2_N'][user_id_str] = 1
 				else:
@@ -235,9 +235,9 @@ def RollingScore_Update(RollingScoreBank, Tweet_OBJ, keyword1, keyword2):
 	if flag_key1 == False and flag_relevent == True:
 		if user_id_str in RollingScoreBank['user1'] and user_id_str in RollingScoreBank['user1_N']:
 			# compare user_score with current Max_Score_1
-			New_User_Score = 1.0*(Max_Score_1 - 1 + RollingScoreBank['user1'][item]*RollingScoreBank['user1_N'][item])/(RollingScoreBank['user1_N'][item]+1)
-			if  RollingScoreBank['user1'][item] < 1.2 and Max_Score_1 > 5.0:
-				RollingScoreBank['user1'][item] = Max_Score_1 -1
+			New_User_Score = 1.0*(Max_Score_1 - 1 + RollingScoreBank['user1'][user_id_str]*RollingScoreBank['user1_N'][user_id_str])/(RollingScoreBank['user1_N'][user_id_str]+1)
+			if  RollingScoreBank['user1'][user_id_str] < 1.2 and Max_Score_1 > 5.0:
+				RollingScoreBank['user1'][user_id_str] = Max_Score_1 -1
 				RollingScoreBank['user1_N'][user_id_str] = 1
 			else:
 				RollingScoreBank['user1'][user_id_str] = New_User_Score
@@ -249,9 +249,9 @@ def RollingScore_Update(RollingScoreBank, Tweet_OBJ, keyword1, keyword2):
 	if flag_key2 == False and flag_relevent == True:
 		if user_id_str in RollingScoreBank['user2'] and user_id_str in RollingScoreBank['user2_N']:
 			# compare user_score with current Max_Score_2
-			New_User_Score = 1.0*(Max_Score_2 - 1 + RollingScoreBank['user2'][item]*RollingScoreBank['user2_N'][item])/(RollingScoreBank['user2_N'][item]+1)
-			if  RollingScoreBank['user2'][item] < 1.2 and Max_Score_2 > 5.0:
-				RollingScoreBank['user2'][item] = Max_Score_2 -1
+			New_User_Score = 1.0*(Max_Score_2 - 1 + RollingScoreBank['user2'][user_id_str]*RollingScoreBank['user2_N'][user_id_str])/(RollingScoreBank['user2_N'][user_id_str]+1)
+			if  RollingScoreBank['user2'][user_id_str] < 1.2 and Max_Score_2 > 5.0:
+				RollingScoreBank['user2'][user_id_str] = Max_Score_2 -1
 				RollingScoreBank['user2_N'][user_id_str] = 1
 			else:
 				RollingScoreBank['user2'][user_id_str] = New_User_Score
@@ -310,7 +310,7 @@ def RollingScore_Update(RollingScoreBank, Tweet_OBJ, keyword1, keyword2):
 		if user_id_str in RollingScoreBank['user1'] and user_id_str in RollingScoreBank['user1_N']:
 			# compare user_score with current Max_Score_1
 			RollingScoreBank['user1_N'][user_id_str] += 1
-			New_User_Score = 1.0*(Max_Score_1 - 1 + RollingScoreBank['user1'][item]*RollingScoreBank['user1_N'][item])/(RollingScoreBank['user1_N'][item]+1)		
+			New_User_Score = 1.0*(Max_Score_1 - 1 + RollingScoreBank['user1'][user_id_str]*RollingScoreBank['user1_N'][user_id_str])/(RollingScoreBank['user1_N'][user_id_str]+1)		
 			RollingScoreBank['user1'][user_id_str] = New_User_Score
 		else:
 			RollingScoreBank['user1'][user_id_str] = Max_Score_1 - 1
@@ -319,7 +319,7 @@ def RollingScore_Update(RollingScoreBank, Tweet_OBJ, keyword1, keyword2):
 		if user_id_str in RollingScoreBank['user2'] and user_id_str in RollingScoreBank['user2_N']:
 			# compare user_score with current Max_Score_1
 			RollingScoreBank['user2_N'][user_id_str] += 1
-			New_User_Score = 1.0*(Max_Score_1 - 1 + RollingScoreBank['user2'][item]*RollingScoreBank['user2_N'][item])/(RollingScoreBank['user2_N'][item]+1)		
+			New_User_Score = 1.0*(Max_Score_1 - 1 + RollingScoreBank['user2'][user_id_str]*RollingScoreBank['user2_N'][user_id_str])/(RollingScoreBank['user2_N'][user_id_str]+1)		
 			RollingScoreBank['user2'][user_id_str] = New_User_Score
 		else:
 			RollingScoreBank['user2'][user_id_str] = Max_Score_1 - 1
