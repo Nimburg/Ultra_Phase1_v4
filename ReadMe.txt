@@ -11,6 +11,7 @@ Before executing the programs, please:
 2. specify those variables at Phase1_Main.py
 3. you could reassign new keywords of your own choice
 4. it is recommended to collect a bigger data file, at least more than 1 hour real-world-time
+5. you should update the data file name in Phase1_Main.py, and place your data file under ./Data
 
 When executing the programs:
 
