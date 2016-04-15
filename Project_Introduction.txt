@@ -8,7 +8,7 @@ with Twitter API as current data source.
 Project Ultra is intended to have at least three phases. Phase 1 would be data collection, data cleaning, 
 data filtering and data storage.
 
-Phase 2 would be some preliminary analysis, classification of information and users, and potentially 
+Phase 2 would be some preliminary analysis, classification of information and users, and most importantly, 
 sentimental analysis. 
 
 Phase 3 would build on top of Phase 2, with additional insights borrowed from "relevant" mathematical 
