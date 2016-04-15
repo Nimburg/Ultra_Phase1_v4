@@ -303,11 +303,12 @@ def Phase1_Main(file_name, keyword1, keyword2, MySQL_DBkey, RollingScoreBank):
 
 if __name__ == "__main__":
 
-	file_name_list = ['US_tweets_Mar4th.txt', 'US_tweets_Mar5th.txt','US_tweets_Mar6th','US_tweets_Mar7th']
+	file_name_list = ['US_tweets_Mar4th.txt', 'US_tweets_Mar5th.txt','US_tweets_Mar6th.txt','US_tweets_Mar7th.txt']
+	#file_name_list = ['US_tweets_Mar6th.txt','US_tweets_Mar7th.txt']
 
 	keyword1 = 'trump'
 	keyword2 = 'hillary'
-	MySQL_DBkey = {'host':'localhost', 'user':'', 'password':'', 'db':'','charset':'utf8mb4'}
+	MySQL_DBkey = {'host':'localhost', 'user':'sa', 'password':'fanyu01', 'db':'ultra_v4_phase1','charset':'utf8mb4'}
 
 
 	# Rolling Score Bank

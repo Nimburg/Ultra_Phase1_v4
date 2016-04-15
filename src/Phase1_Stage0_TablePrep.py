@@ -131,7 +131,7 @@ def TagUnique_Init(connection, pin_time):
 	Comd_TagUnique_Init = "\
 CREATE TABLE IF NOT EXISTS "+tableName+"\n\
 (\n\
-	tagText varchar(64) PRIMARY KEY NOT NULL,\n\
+	tagText varchar(255) PRIMARY KEY NOT NULL,\n\
 	totalCall int NOT NULL,\n\
 	score1_fin float,\n\
 	Ncall1_fin int,\n\
@@ -230,7 +230,7 @@ def UserUnique_Init(connection, pin_time):
 CREATE TABLE IF NOT EXISTS "+tableName+"\n\
 (\n\
 	userID bigint PRIMARY KEY NOT NULL,\n\
-	userName varchar(64),\n\
+	userName varchar(255),\n\
 	totalAction int,\n\
 	followers int,\n\
 	friends int,\n\

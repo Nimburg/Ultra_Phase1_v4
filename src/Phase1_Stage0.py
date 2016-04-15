@@ -140,6 +140,8 @@ def Stage0_Json(input_str, index_line, keyword1, keyword2, RollingScoreBank):
 			try: 
 				user_id = user_json['id_str']
 				user_name = user_json['screen_name']
+				if len(user_name) > 253:
+					user_name = user_name[:250]
 				user_followers = user_json['followers_count']
 				user_friends = user_json['friends_count']
 			except ValueError:
@@ -194,7 +196,10 @@ def Stage0_Json(input_str, index_line, keyword1, keyword2, RollingScoreBank):
 			for entry in Hashtags_json:
 				try:
 					# THIS IS VERY VERY VERY IMPORTANT !!!!!
-					tag_list.add(str(entry['text']).lower()) # THIS IS VERY VERY VERY IMPORTANT !!!!!
+					tag_text = str(entry['text']).lower()
+					if len(tag_text) > 253:
+						tag_text = tag_text[:250]
+					tag_list.add(tag_text) # THIS IS VERY VERY VERY IMPORTANT !!!!!
 					# THIS IS VERY VERY VERY IMPORTANT !!!!!
 					# MySQL cant distinguish upper and lower cases when str is used as name for table
 					# which will result in confusion in data analysis
